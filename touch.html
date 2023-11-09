@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Element Demo</title>
+</head>
+<body>
+
+  <x-center style="background-color: lightblue;">
+    <p>Hello, This is my custom element!</p>
+  </x-center>
+
+  <script>
+    
+    class XCenter extends HTMLElement {
+      constructor() {
+        super();
+
+    
+        this.attachShadow({ mode: 'open' });
+
+    
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100%;
+            }
+          </style>
+          <div>
+            <slot></slot>
+          </div>
+        `;
+      }
+    }
+
+    
+    customElements.define('x-center', XCenter);
+  </script>
+
+</body>
+</html>
